@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Lil Peach 🍑</title>
+
+<style>
+    :root {
+        --peach: #ff9f8a;
+        --light-peach: #ffd6c9;
+        --cream: #eee0d2;
+        --rose: #d96c68;
+        --brown: #573c35;
+        --gold: #d9a441;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: Georgia, 'Times New Roman', serif;
+        background: var(--cream);
+        color: var(--brown);
+        line-height: 1.7;
+        overflow-x: hidden;
+    }
+
+    /* ---------- FLOATING HEARTS ---------- */
+
+    .hearts {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 999;
+    }
+
+    .heart {
+        position: absolute;
+        bottom: -30px;
+        font-size: 20px;
+        opacity: 0;
+        animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0;
+        }
+        10% { opacity: .6; }
+        90% { opacity: .4; }
+        100% {
+            transform: translateY(-110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 40px 20px;
+        position: relative;
+        background:
+            radial-gradient(circle at 20% 20%, rgba(255,180,160,.45), transparent 30%),
+            radial-gradient(circle at 80% 70%, rgba(255,220,190,.6), transparent 35%),
+            var(--cream);
+    }
+
+    .hero-content {
+        max-width: 800px;
+        animation: fadeIn 1.5s ease;
+    }
+
+    .peach {
+        font-size: 75px;
+        animation: bob 3s ease-in-out infinite;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    @keyframes bob {
+        0%,100% { transform: translateY(0) rotate(-3deg); }
+        50% { transform: translateY(-12px) rotate(3deg); }
+    }
+
+    h1 {
+        font-size: clamp(3rem, 10vw, 7rem);
+        line-height: 1;
+        color: var(--rose);
+        margin-bottom: 20px;
+    }
+
+    .subtitle {
+        font-size: clamp(1.1rem, 3vw, 1.5rem);
+        font-style: italic;
+        margin-bottom: 35px;
+    }
+
+    .date {
+        color: #97766b;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-size: .85rem;
+    }
+
+    .open-button {
+        display: inline-block;
+        margin-top: 35px;
+        padding: 15px 30px;
+        border-radius: 50px;
+        background: var(--rose);
+        color: white;
+        text-decoration: none;
+        font-family: Arial, sans-serif;
+        font-size: .95rem;
+        transition: .3s;
+        box-shadow: 0 8px 25px rgba(217,108,104,.25);
+    }
+
+    .open-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(217,108,104,.35);
+    }
+
+    /* ---------- GENERAL ---------- */
+
+    section {
+        padding: 90px 20px;
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    .section-title {
+        text-align: center;
+        color: var(--rose);
+        font-size: 2.4rem;
+        margin-bottom: 15px;
+    }
+
+    .section-intro {
+        text-align: center;
+        max-width: 650px;
+        margin: 0 auto 45px;
+        color: #795f57;
+    }
+
+    /* ---------- LETTER ---------- */
+
+    .letter {
+        background: #fffdfb;
+        padding: clamp(30px, 7vw, 65px);
+        border-radius: 8px;
+        box-shadow: 0 15px 50px rgba(100,60,40,.09);
+        position: relative;
+        max-width: 760px;
+        margin: auto;
+    }
+
+    .letter:before {
+        content: "♥";
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        color: var(--light-peach);
+        font-size: 35px;
+    }
+
+    .letter p {
+        margin-bottom: 20px;
+    }
+
+    .signature {
+        margin-top: 35px;
+        font-size: 1.3rem;
+        font-style: italic;
+        color: var(--rose);
+    }
+
+    /* ---------- TIMELINE ---------- */
+
+    .timeline {
+        position: relative;
+        max-width: 750px;
+        margin: auto;
+    }
+
+    .timeline:before {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--light-peach);
+    }
+
+    .moment {
+        position: relative;
+        padding-left: 60px;
+        margin-bottom: 45px;
+    }
+
+    .moment:before {
+        content: "♥";
+        position: absolute;
+        left: 7px;
+        top: 0;
+        width: 28px;
+        height: 28px;
+        background: var(--rose);
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 28px;
+        font-size: 12px;
+    }
+
+    .moment-date {
+        color: var(--rose);
+        font-size: .8rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .moment h3 {
+        margin: 5px 0;
+        font-size: 1.4rem;
+    }
+
+    /* ---------- MEMORIES ---------- */
+
+    .memories {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+
+    .memory {
+        background: white;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(100,60,40,.08);
+        transition: .3s;
+    }
+
+    .memory:hover {
+        transform: translateY(-5px) rotate(1deg);
+    }
+
+    .memory-photo {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 8px;
+        background: var(--light-peach);
+        display: block;
+    }
+
+    .memory-caption {
+        padding: 12px 5px 5px;
+        text-align: center;
+        font-style: italic;
+    }
+
+    /* ---------- THINGS I LOVE ---------- */
+
+    .love-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 18px;
+    }
+
+    .love-item {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 7px 25px rgba(100,60,40,.07);
+        transition: .3s;
+    }
+
+    .love-item:hover {
+        transform: translateY(-4px);
+    }
+
+    .love-number {
+        color: var(--peach);
+        font-size: 1.7rem;
+        font-weight: bold;
+    }
+
+    /* ---------- SONGS ---------- */
+
+    .song {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 5px 20px rgba(100,60,40,.06);
+    }
+
+    .song strong {
+    color: var(--rose);
+}
+
+
+
+
+.song a {
+        color: var(--rose);
+        text-decoration: none;
+        font-family: Arial, sans-serif;
+        font-size: .85rem;
+        white-space: nowrap;
+    }
+
+    /* ---------- FINAL ---------- */
+
+    .final {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        background: linear-gradient(135deg, #ffe0d4, #fff5ef);
+        max-width: none;
+    }
+
+    .final-content {
+        max-width: 700px;
+        margin: auto;
+    }
+
+    .final h2 {
+        font-size: clamp(2.5rem, 7vw, 5rem);
+        color: var(--rose);
+        line-height: 1.1;
+        margin-bottom: 25px;
+    }
+
+    .big-heart {
+        font-size: 65px;
+        margin-bottom: 20px;
+    }
+
+    .tiny {
+        font-size: .85rem;
+        color: #9b8178;
+        margin-top: 35px;
+    }
+
+    /* ---------- ANIMATION ---------- */
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media(max-width:600px) {
+        section {
+            padding: 65px 18px;
+        }
+
+        .song {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .timeline:before {
+            left: 14px;
+        }
+
+        .moment {
+            padding-left: 45px;
+        }
+
+        .moment:before {
+            left: 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Floating hearts -->
+<div class="hearts">
+    <div class="heart" style="left:5%;animation-duration:13s;animation-delay:0s;">♥</div>
+    <div class="heart" style="left:15%;animation-duration:17s;animation-delay:3s;">♡</div>
+    <div class="heart" style="left:28%;animation-duration:14s;animation-delay:7s;">♥</div>
+    <div class="heart" style="left:43%;animation-duration:19s;animation-delay:2s;">♡</div>
+    <div class="heart" style="left:60%;animation-duration:15s;animation-delay:5s;">♥</div>
+    <div class="heart" style="left:75%;animation-duration:18s;animation-delay:1s;">♡</div>
+    <div class="heart" style="left:90%;animation-duration:14s;animation-delay:8s;">♥</div>
+    <div class="heart otter" style="left:12%;animation-duration:18s;animation-delay:2s;">🦦</div>
+<div class="heart otter" style="left:32%;animation-duration:22s;animation-delay:7s;">🦦</div>
+<div class="heart otter" style="left:55%;animation-duration:20s;animation-delay:4s;">🦦</div>
+<div class="heart otter" style="left:78%;animation-duration:24s;animation-delay:10s;">🦦</div>
+<div class="heart otter" style="left:92%;animation-duration:19s;animation-delay:15s;">🦦</div>
+
+</div>
+
+
+<!-- =========================================================
+     EDIT ME
+     Everything below can be changed without touching the CSS.
+     ========================================================= -->
+
+
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-content">
+        <div class="peach">🍑</div>
+
+        <div class="date">September 1, 2026</div>
+
+        <h1>My Peach</h1>
+
+        <p class="subtitle">
+            One month officially.<br>
+            Much longer my girl in every way that matters.
+        </p>
+
+        <a href="#letter" class="open-button">
+            Open your gift ♥
+        </a>
+    </div>
+</header>
+
+
+<!-- LETTER -->
+<section id="letter">
+    <h2 class="section-title">A letter for my lovely woman</h2>
+
+    <p class="section-intro">
+        My attempt to put into words what you mean to me.
+    </p>
+
+    <div class="letter">
+
+        <!-- CHANGE THIS LETTER -->
+        <p>My lil peach,</p>
+
+    
+        </p>
+
+        <p>
+            It's obviously a bit funny to me calling this our one-month anniversary,
+            because you were already so incredibly special to me long
+            before we officially became "us."
+        </p>
+
+        <p>
+            I thought plenty about what I wanted to do for you, because even
+	    if it's just our one month, it signifies so much more for me. I hope
+	    you'll cherish this for a long time to come, because that's what I plan
+	    to do with you my pretty girl <3
+        </p>
+
+        <p>
+           
+            There are an infinite amount of little things that I love
+            about you, and I hope you know just how grateful I am that somehow,
+            out of everyone in the world, I got you. I am the luckiest man alive.
+        </p>
+
+        <p>
+            This may only be one month officially, but I would give everything I have
+	    and more to end up in this exact same spot.
+        </p>
+
+        <p>
+            I love you most, happy one month, I'd give you my favorite rock :)
+        </p>
+
+        <div class="signature">
+            — Gav ♥
+        </div>
+    </div>
+</section>
+
+
+<!-- TIMELINE -->
+<section>
+    <h2 class="section-title">Our story</h2>
+
+    <p class="section-intro">
+        Because "one month" doesn't do it justice.
+    </p>
+
+    <div class="timeline">
+
+        <!-- COPY/DELETE THESE MOMENTS AS NEEDED -->
+
+        <div class="moment">
+            <div class="moment-date">The beginning</div>
+            <h3>When we first met</h3>
+            <p>
+                We were just a mere duo, just a couple of rivals beavers :) I immediately knew the connection was stronger in that moment. I can't lie and say I knew I'd fall head over heels for you, but I knew I wanted you to be in my life permanently.
+            </p>
+        </div>
+
+        <div class="moment">
+            <div class="moment-date">Before popping THE question..</div>
+            <h3>Easy as the air I breathe, you became my person</h3>
+            <p>
+                All it took was playing our game together for me to realize what was in front of me. All it took was the seamless conversation and bliss I experienced with you. I knew so incredibly early on that no matter where we ended up, you were going to stay in my life one way or another.
+            </p>
+        </div>
+
+        <div class="moment">
+            <div class="moment-date">National Girlfriend Day (coercion)</div>
+            <h3>We finally did it :)</h3>
+            <p>
+                I will forever ragebait you about it, but to call it coercion would be the funniest joke I've ever told. I treated you as you were mine long before and you did the same. I think we both knew so long before exactly where we were going to end up. All I had to do was pop the question :D
+            </p>
+        </div>
+
+        <div class="moment">
+            <div class="moment-date">Today</div>
+            <h3>One month ♥</h3>
+            <p>
+                Here we are, with as many months as life blesses us with left to go my lil otter.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- MEMORIES -->
+<section>
+    <h2 class="section-title">Pieces of us</h2>
+
+    <p class="section-intro">
+       Some of my favorite moments, with plenty more to come.
+    </p>
+
+    <div class="memories">
+
+        <!--
+        TO ADD A PHOTO:
+
+        1. Put your photo in the same folder as this HTML file.
+        2. Replace "photo1.jpg" with the filename.
+
+        Example:
+        <img src="ourphoto.jpg" class="memory-photo">
+
+        -->
+
+        <div class="memory">
+            <img src="C:\Users\gavin\OneDrive\Pictures\aug1.png"
+                 class="memory-photo"
+                 alt="A memory of us"
+                 onerror="this.style.display='none'">
+            <div class="memory-caption">
+                The hardest game we ever played!
+            </div>
+        </div>
+
+        <div class="memory">
+            <img src="C:\Users\gavin\OneDrive\Pictures\aug2.png"
+                 class="memory-photo"
+                 alt="A memory of us"
+                 onerror="this.style.display='none'">
+            <div class="memory-caption">
+                Infinite aura
+            </div>
+        </div>
+
+        <div class="memory">
+            <img src="C:\Users\gavin\OneDrive\Pictures\aug3.png"
+                 class="memory-photo"
+                 alt="A memory of us"
+                 onerror="this.style.display='none'">
+            <div class="memory-caption">
+                My professional mountain climber
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- THINGS I LOVE -->
+<section>
+    <h2 class="section-title">Why you're so special to me</h2>
+
+    <p class="section-intro">
+        The little things are usually the biggest things.
+    </p>
+
+    <div class="love-grid">
+
+        <div class="love-item">
+            <div class="love-number">01</div>
+            <p>
+                The way you make me feel like I can be completely myself.
+            </p>
+        </div>
+
+        <div class="love-item">
+            <div class="love-number">02</div>
+            <p>
+                The way you somehow make ordinary conversations/events feel
+                like something I want to remember.
+            </p>
+        </div>
+
+        <div class="love-item">
+            <div class="love-number">03</div>
+            <p>
+                The fact you still act like you're actually left-handed xD
+            </p>
+        </div>
+
+        <div class="love-item">
+            <div class="love-number">04</div>
+            <p>
+                All of our tism moments and vocal stims that we provoke in each other.
+            </p>
+        </div>
+
+        <div class="love-item">
+            <div class="love-number">05</div>
+            <p>
+                The way you communicate and tell me how you feel.
+            </p>
+        </div>
+
+        <div class="love-item">
+            <div class="love-number">06</div>
+            <p>
+                Your kindness and willingness to sacrifice your own personal desires for others.
+            </p>
+        </div>
+
+        <div class="love-item">
+            <div class="love-number">07</div>
+            <p>
+                The burning desire to spend any moment I can with you.
+            </p>
+        </div>
+
+        <div class="love-item">
+            <div class="love-number">08</div>
+            <p>
+               Us being a duo before anything else ever happened :)
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- SOUNDTRACK -->
+<section>
+    <h2 class="section-title">Our soundtrack</h2>
+
+    <p class="section-intro">
+        Songs that remind me of you.
+    </p>
+
+    <!-- Replace the songs and links -->
+
+   <div class="song">
+    <div>
+        <strong>One</strong><br>
+        <em>A very special song to us</em>
+    </div>
+    <a href="spotify:track:6jppHdy8EW9ghHlOCpGBEr">Click me →</a>
+</div>
+
+    <div class="song">
+    <div>
+        <strong>Two</strong><br>
+        <em>A song from our beginning :')</em>
+    </div>
+    <a href="spotify:track:6Jv7kjGkhY2fT4yuBF3aTz">You looked so pretty clicking that button →</a>
+</div>
+
+<div class="song">
+    <div>
+        <strong>Three</strong><br>
+        <em>A song you showed to me that I'll always cherish</em>
+    </div>
+    <a href="spotify:track:5WdMBJD7V5CVBTBdE2at2D">Last one →</a>
+</div>
+
+    
+
+</section>
+
+
+<!-- FUTURE -->
+<section>
+    <h2 class="section-title">Things I can't wait for</h2>
+
+    <p class="section-intro">
+        Because this is only the beginning of our story.
+    </p>
+
+    <div class="letter">
+
+       
+        </p>
+
+        <p>
+            I can't wait to:
+        </p>
+
+        <p>
+            <!-- ADD YOUR FUTURE PLANS HERE -->
+            • Go on our first real date together<br>
+            • Hold you for as long as humanly possible<br>
+            • Make infinitely more memories with you by my side<br>
+            • Spend the rest of my time on this planet with you Kayla Jane
+        </p>
+
+    </div>
+</section>
+
+
+<!-- FINAL -->
+<section class="final">
+    <div class="final-content">
+
+        <div class="big-heart">🍑</div>
+
+        <h2>
+            One month down.
+        </h2>
+
+        <p style="font-size:1.25rem;">
+            Every month left to go.
+        </p>
+
+        <p style="margin-top:25px;">
+            Thank you for being my person, my favorite conversation, my best friend, my safe space, and my lil peach.
+        </p>
+
+        <p style="margin-top:25px;">
+            I love you most, every single time. 
+        </p>
+
+        <p class="tiny">
+            Made specifically for my very special lady.
+        </p>
+
+    </div>
+</section>
+
+
+<script>
+    const symbols = ["♥", "♡", "🍑"];
+
+    document.querySelectorAll(".heart:not(.otter)").forEach((heart, index) => {
+        heart.textContent = symbols[index % symbols.length];
+    });
+</script>
+
+
+</body>
+</html> 
